@@ -96,6 +96,7 @@ class ProductListViewController: UITableViewController {
         }
 
         if let favImage = cell.favoriteImage {
+            favImage.isUserInteractionEnabled = false
             if (product.favorite!) {
                 favImage.isHighlighted = true
             } else {

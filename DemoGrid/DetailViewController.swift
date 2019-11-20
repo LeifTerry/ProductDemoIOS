@@ -10,18 +10,19 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var detailTitleLabel: UILabel!
+    @IBOutlet weak var detailAuthorLabel: UILabel!
     @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var favoriteImage: UIImageView!
 
 
     func configureView() {
         // update the user interface for the detail item.
-        if var detail = detailItem {
+        if var product = detailItem {
 
             // mark as favorite
             if let favImage = favoriteImage {
-                if (detail.favorite!) {
+                if (product.favorite!) {
                     favImage.isHighlighted = true
                 } else {
                     favImage.isHighlighted = false
@@ -29,20 +30,27 @@ class DetailViewController: UIViewController {
             }
 
             // update descriptive text
-            if let label = detailDescriptionLabel {
-                label.text = detail.title
+            if let label = detailTitleLabel {
+                label.text = product.title
+            }
+            if let label = detailAuthorLabel {
+                if let author = product.author {
+                    label.text = author
+                } else {
+                    label.text = ""
+                }
             }
 
             // set image. load it if needed.
             if let image = detailImage {
-                if let data = detail.imageData {
+                if let data = product.imageData {
                     image.image = UIImage(data: data)
                 }
-                else {
-                    let url = URL(string:(detail.imageUrl)!)
+                else if product.imageUrl != nil {
+                    let url = URL(string:(product.imageUrl)!)
                     if (url != nil) {
-                        detail.imageData = try? Data(contentsOf: url!)
-                        if let data = detail.imageData {
+                        product.imageData = try? Data(contentsOf: url!)
+                        if let data = product.imageData {
                             image.image = UIImage(data: data)
                         }
                     }
