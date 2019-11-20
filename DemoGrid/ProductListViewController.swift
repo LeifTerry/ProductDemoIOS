@@ -27,7 +27,7 @@ class ProductTableViewCell: UITableViewCell {
     // xx!! image data
 }
 
-class MasterViewController: UITableViewController {
+class ProductListViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Product]()
@@ -93,6 +93,9 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProductTableViewCell
+
+        cell.layer.cornerRadius = 5
+        cell.layer.masksToBounds = true;
 
         var product = objects[indexPath.row]
         cell.title!.text = product.title

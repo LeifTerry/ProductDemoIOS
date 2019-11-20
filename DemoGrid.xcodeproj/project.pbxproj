@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4E6F8BD2382E07000C0D46E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F8BC2382E07000C0D46E /* AppDelegate.swift */; };
-		C4E6F8BF2382E07000C0D46E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F8BE2382E07000C0D46E /* MasterViewController.swift */; };
+		C4E6F8BF2382E07000C0D46E /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F8BE2382E07000C0D46E /* ProductListViewController.swift */; };
 		C4E6F8C12382E07000C0D46E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F8C02382E07000C0D46E /* DetailViewController.swift */; };
 		C4E6F8C42382E07000C0D46E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E6F8C22382E07000C0D46E /* Main.storyboard */; };
 		C4E6F8C62382E07200C0D46E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E6F8C52382E07200C0D46E /* Assets.xcassets */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		C4E6F8B92382E07000C0D46E /* DemoGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E6F8BC2382E07000C0D46E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C4E6F8BE2382E07000C0D46E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		C4E6F8BE2382E07000C0D46E /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		C4E6F8C02382E07000C0D46E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C4E6F8C32382E07000C0D46E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4E6F8C52382E07200C0D46E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E6F8BC2382E07000C0D46E /* AppDelegate.swift */,
-				C4E6F8BE2382E07000C0D46E /* MasterViewController.swift */,
+				C4E6F8BE2382E07000C0D46E /* ProductListViewController.swift */,
 				C4E6F8C02382E07000C0D46E /* DetailViewController.swift */,
 				C4E6F8C22382E07000C0D46E /* Main.storyboard */,
 				C4E6F8C52382E07200C0D46E /* Assets.xcassets */,
@@ -205,7 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E6F8C12382E07000C0D46E /* DetailViewController.swift in Sources */,
-				C4E6F8BF2382E07000C0D46E /* MasterViewController.swift in Sources */,
+				C4E6F8BF2382E07000C0D46E /* ProductListViewController.swift in Sources */,
 				C4E6F8BD2382E07000C0D46E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -354,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -371,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SQ96VBA2Q;
 				INFOPLIST_FILE = DemoGrid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SQ96VBA2Q;
 				INFOPLIST_FILE = DemoGrid/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
