@@ -87,7 +87,7 @@ class ProductListViewController: UITableViewController {
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true;
 
-        var product = products[indexPath.row]
+        let product = products[indexPath.row]
         cell.title!.text = product.title
         if (product.author != nil) {
             cell.author!.text = product.author
@@ -176,7 +176,7 @@ class ProductListViewController: UITableViewController {
             }
 
             for dict in dataArray {
-                var newProd = Product()
+                let newProd = Product()
                 newProd.title = dict["title"];
                 newProd.author = dict["author"];
                 newProd.imageUrl = dict["imageURL"];

@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // update the user interface for the detail item.
-        if var product = detailItem {
+        if let product = detailItem {
 
             // mark as favorite
             if let favImage = favoriteImage {
