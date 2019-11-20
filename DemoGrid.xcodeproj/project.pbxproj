@@ -14,6 +14,7 @@
 		C4E6F8C62382E07200C0D46E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E6F8C52382E07200C0D46E /* Assets.xcassets */; };
 		C4E6F8C92382E07200C0D46E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E6F8C72382E07200C0D46E /* LaunchScreen.storyboard */; };
 		C4E6F8D42382E07300C0D46E /* DemoGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6F8D32382E07300C0D46E /* DemoGridUITests.swift */; };
+		C4E6F8DF23838D2700C0D46E /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = C4E6F8DE23838D2700C0D46E /* products.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		C4E6F8CF2382E07300C0D46E /* DemoGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E6F8D32382E07300C0D46E /* DemoGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoGridUITests.swift; sourceTree = "<group>"; };
 		C4E6F8D52382E07300C0D46E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4E6F8DE23838D2700C0D46E /* products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = products.json; path = data/products.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		C4E6F8B02382E07000C0D46E = {
 			isa = PBXGroup;
 			children = (
+				C4E6F8DE23838D2700C0D46E /* products.json */,
 				C4E6F8BB2382E07000C0D46E /* DemoGrid */,
 				C4E6F8D22382E07300C0D46E /* DemoGridUITests */,
 				C4E6F8BA2382E07000C0D46E /* Products */,
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E6F8C92382E07200C0D46E /* LaunchScreen.storyboard in Resources */,
+				C4E6F8DF23838D2700C0D46E /* products.json in Resources */,
 				C4E6F8C62382E07200C0D46E /* Assets.xcassets in Resources */,
 				C4E6F8C42382E07000C0D46E /* Main.storyboard in Resources */,
 			);
@@ -367,6 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SQ96VBA2Q;
 				INFOPLIST_FILE = DemoGrid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SQ96VBA2Q;
 				INFOPLIST_FILE = DemoGrid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
