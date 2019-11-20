@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-struct Product {
+class Product {
+    // init from JSON
     var title: String?
     var author: String?
     var imageUrl: String?
+
+    // current state
     var imageData: Data?
     var badImage: Bool?
+    var favorite: Bool?
 }
 
 class ProductTableViewCell: UITableViewCell {
@@ -23,54 +27,40 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
-
-    // xx!! image data
+    @IBOutlet weak var favoriteImage: UIImageView!
 }
 
 class ProductListViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Product]()
-
+    var products = [Product]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        // xx!! let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        // navigationItem.rightBarButtonItem = addButton
-
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+
+        parseProducts()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
-
-        parseProducts()
     }
-
-/* xx!!
-     @objc
-    func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
-*/
 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! Product
+                let product = products[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                controller.detailItem = product
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -84,7 +74,7 @@ class ProductListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return products.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,7 +87,7 @@ class ProductListViewController: UITableViewController {
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true;
 
-        var product = objects[indexPath.row]
+        var product = products[indexPath.row]
         cell.title!.text = product.title
         if (product.author != nil) {
             cell.author!.text = product.author
@@ -105,12 +95,20 @@ class ProductListViewController: UITableViewController {
             cell.author.text = ""
         }
 
+        if let favImage = cell.favoriteImage {
+            if (product.favorite!) {
+                favImage.isHighlighted = true
+            } else {
+                favImage.isHighlighted = false
+            }
+        }
+
         if (product.imageData != nil || product.badImage!) {
             cell.thumbnail.image = UIImage(data: product.imageData!)
             cell.loadingSpinner.stopAnimating()
         } else {
-            // bigger spinner
             cell.thumbnail.image = nil;
+            // bigger spinner
             cell.loadingSpinner.transform = CGAffineTransform(scaleX: 2.2, y: 2.2)
             cell.loadingSpinner.startAnimating()
 
@@ -124,17 +122,18 @@ class ProductListViewController: UITableViewController {
                             DispatchQueue.main.async {
                                 cell.thumbnail.image = image
                                 cell.loadingSpinner.stopAnimating()
-                                // xx!! reload cell?
                             }
                         }
                         else {
+                            // mark image as missing so we don't kee trying to load it
+                            // could also have a counter and mark it bad only after N tries
                             product.badImage = true
                         }
                     }
                 }
             } else {
                 // image load failed or can't be started
-                cell.thumbnail.image = nil; // xx!! show no image here
+                cell.thumbnail.image = nil;
                 cell.loadingSpinner.stopAnimating()
             }
         }
@@ -149,7 +148,7 @@ class ProductListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            products.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -175,8 +174,6 @@ class ProductListViewController: UITableViewController {
                 return
             }
 
-            print(dataArray) // xx!!
-
             for dict in dataArray {
                 var newProd = Product()
                 newProd.title = dict["title"];
@@ -184,7 +181,14 @@ class ProductListViewController: UITableViewController {
                 newProd.imageUrl = dict["imageURL"];
                 newProd.badImage = false;
 
-                objects.append(newProd);
+                let fav = UserDefaults.standard.bool(forKey:newProd.title!)
+                if (fav) {
+                    newProd.favorite = true;
+                } else {
+                    newProd.favorite = false;
+                }
+
+                products.append(newProd);
             }
 
         } catch {
