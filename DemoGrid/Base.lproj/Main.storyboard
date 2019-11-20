@@ -59,7 +59,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <accessibility key="accessibilityConfiguration" identifier="productDetailView"/>
+                        <accessibility key="accessibilityConfiguration" identifier="productDetailView" label="Detail"/>
                         <constraints>
                             <constraint firstItem="s3E-OI-b1t" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" constant="30" id="7dz-lO-Yt4"/>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="8" id="7tr-0s-Q20"/>
@@ -76,7 +76,7 @@
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM" userLabel="Detail"/>
                     <connections>
                         <outlet property="detailAuthorLabel" destination="s3E-OI-b1t" id="e8b-BT-fLh"/>
                         <outlet property="detailImage" destination="N2H-6X-3Cu" id="UxP-vL-HyU"/>
