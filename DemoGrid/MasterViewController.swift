@@ -12,7 +12,9 @@ import UIKit
 struct Product {
     var title: String?
     var author: String?
-    var imageURL: String?
+    var imageUrl: String?
+    var imageData: Data?
+    var badImage: Bool?
 }
 
 class ProductTableViewCell: UITableViewCell {
@@ -92,7 +94,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProductTableViewCell
 
-        let product = objects[indexPath.row]
+        var product = objects[indexPath.row]
         cell.title!.text = product.title
         if (product.author != nil) {
             cell.author!.text = product.author
@@ -100,10 +102,39 @@ class MasterViewController: UITableViewController {
             cell.author.text = ""
         }
 
-        // bigger spinner
-        cell.loadingSpinner.transform = CGAffineTransform(scaleX: 2.2, y: 2.2)
+        if (product.imageData != nil || product.badImage!) {
+            cell.thumbnail.image = UIImage(data: product.imageData!)
+            cell.loadingSpinner.stopAnimating()
+        } else {
+            // bigger spinner
+            cell.thumbnail.image = nil;
+            cell.loadingSpinner.transform = CGAffineTransform(scaleX: 2.2, y: 2.2)
+            cell.loadingSpinner.startAnimating()
 
-        // xx!! TODO load images
+            if (product.imageUrl != nil) {
+                DispatchQueue.global(qos: .background).async {
+                    let url = URL(string:(product.imageUrl)!)
+                    if (url != nil) {
+                        product.imageData = try? Data(contentsOf: url!)
+                        if (product.imageData != nil) {
+                            let image: UIImage = UIImage(data: product.imageData!)!
+                            DispatchQueue.main.async {
+                                cell.thumbnail.image = image
+                                cell.loadingSpinner.stopAnimating()
+                                // xx!! reload cell?
+                            }
+                        }
+                        else {
+                            product.badImage = true
+                        }
+                    }
+                }
+            } else {
+                // image load failed or can't be started
+                cell.thumbnail.image = nil; // xx!! show no image here
+                cell.loadingSpinner.stopAnimating()
+            }
+        }
 
         return cell
     }
@@ -147,7 +178,8 @@ class MasterViewController: UITableViewController {
                 var newProd = Product()
                 newProd.title = dict["title"];
                 newProd.author = dict["author"];
-                newProd.imageURL = dict["imageURL"];
+                newProd.imageUrl = dict["imageURL"];
+                newProd.badImage = false;
 
                 objects.append(newProd);
             }
