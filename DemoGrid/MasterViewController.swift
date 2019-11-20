@@ -100,6 +100,11 @@ class MasterViewController: UITableViewController {
             cell.author.text = ""
         }
 
+        // bigger spinner
+        cell.loadingSpinner.transform = CGAffineTransform(scaleX: 2.2, y: 2.2)
+
+        // xx!! TODO load images
+
         return cell
     }
 
