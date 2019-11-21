@@ -32,7 +32,6 @@ class ProductTableViewCell: UITableViewCell {
 
 class ProductListViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
     var products = [Product]()
 
     override func viewDidLoad() {
@@ -45,6 +44,8 @@ class ProductListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        tableView.reloadData()
     }
 
     // MARK: - Segues
